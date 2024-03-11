@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
-use App\Http\Controllers\PostsController;
+// use App\Http\Controllers\PostsController;
+use App\Http\Controllers\MealsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,7 @@ use App\Http\Controllers\PostsController;
 Route::get('/', [PagesController::class, 'index']);
 
 Route::resource('/blog', PostsController::class);
-Route::resource('/meal', PostsController::class);
+Route::resource('/meal', MealsController::class);
 
 Auth::routes();
 

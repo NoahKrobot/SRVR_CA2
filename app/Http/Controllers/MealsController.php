@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Post;
+use App\Models\Meal;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
-class PostsController extends Controller
+class MealsController extends Controller
 {
  
     public function __construct()
@@ -20,8 +20,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return view('meal.index')
-            ->with('posts', Post::orderBy('updated_at', 'DESC')->get());
+        return view('meals.index')
+            ->with('meals', Meal::orderBy('updated_at', 'DESC')->get());
     }
 
     /**
@@ -31,7 +31,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('meal.create');
+        return view('meals.create');
     }
 
     /**
@@ -52,10 +52,10 @@ class PostsController extends Controller
 
         $request->image->move(public_path('images'), $newImageName);
 
-        Post::create([
+        Meal::create([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'slug' => SlugService::createSlug(Post::class, 'slug', $request->title),
+            'slug' => SlugService::createSlug(Meal::class, 'slug', $request->title),
             'image_path' => $newImageName,
             'user_id' => auth()->user()->id
         ]);
@@ -73,7 +73,7 @@ class PostsController extends Controller
     public function show($slug)
     {
         return view('meal.show')
-            ->with('post', Post::where('slug', $slug)->first());
+            ->with('meals', Meal::where('slug', $slug)->first());
     }
 
     /**
@@ -85,7 +85,7 @@ class PostsController extends Controller
     public function edit($slug)
     {
         return view('meal.edit')
-            ->with('post', Post::where('slug', $slug)->first());
+            ->with('meals', Meal::where('slug', $slug)->first());
     }
 
     /**
@@ -102,11 +102,11 @@ class PostsController extends Controller
             'description' => 'required',
         ]);
 
-        Post::where('slug', $slug)
+        Meal::where('slug', $slug)
             ->update([
                 'title' => $request->input('title'),
                 'description' => $request->input('description'),
-                'slug' => SlugService::createSlug(Post::class, 'slug', $request->title),
+                'slug' => SlugService::createSlug(Meal::class, 'slug', $request->title),
                 'user_id' => auth()->user()->id
             ]);
 
@@ -122,8 +122,8 @@ class PostsController extends Controller
      */
     public function destroy($slug)
     {
-        $post = Post::where('slug', $slug);
-        $post->delete();
+        $meals = Meal::where('slug', $slug);
+        $meals->delete();
 
         return redirect('/meal')
             ->with('message', 'Your post has been deleted!');
