@@ -51,36 +51,33 @@
                 {{ $post->description }}
             </p>
             <p class="text-xl text-gray-700 pt-8 pb-10 leading-8 font-light">
-    Current Rating: {{ $post->rating }}
-</p>
+                Current Rating: {{ $post->rating }}
+            </p>
 
-@if (Auth::check())
-    <form action="/meal/{{ $post->slug }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
+            @if (Auth::check())
+            <form action="/meal/{{ $post->slug }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
 
-        <label for="rating">Rate this meal:</label>
+                <label for="rating">Rate this meal:</label>
 
-        <!-- Display stars as icons using Font Awesome -->
-        <div class="rating">
-            @for ($i = 1; $i <= 5; $i++)
-                <input type="radio" id="stars" value="{{ $i }}">
-                <div>
-                <label for="stars" >
-                {{ $i }}
+                <div class="rating">
+                    @for ($i = 1; $i <= 5; $i++)
+                        <input type="radio" id="stars" value="{{ $i }}">
+                        <div>
+                        <label for="stars" >
+                        {{ $i }}
+                        </div>
+                    </label>
+                        
+                    @endfor
                 </div>
-            </label>
-                
-            @endfor
-        </div>
 
-        <button type="submit" class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
-            Submit Post
-        </button>
-    </form>
-@endif
-
-
+                <button type="submit" class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
+                    Submit Post
+                </button>
+            </form>
+            @endif
 
 
 
