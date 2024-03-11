@@ -63,9 +63,9 @@
 
                 <div class="rating">
                     @for ($i = 1; $i <= 5; $i++)
-                        <input type="radio" id="stars" value="{{ $i }}">
+                        <input type="radio" id="star" name="rating" value="{{ $i }}">
                         <div>
-                        <label for="stars" >
+                        <label for="star" >
                         {{ $i }}
                         </div>
                     </label>
