@@ -50,22 +50,26 @@
             <p class="text-xl text-gray-700 pt-8 pb-10 leading-8 font-light">
                 {{ $post->description }}
             </p>
-
             <p class="text-xl text-gray-700 pt-8 pb-10 leading-8 font-light">
-    Current Rating: {{ $post->rating }}
-</p>
+                Current Rating: {{ $post->rating }}
+            </p>
 
-@if (Auth::check())
-<form action="/meal/{{ $post->slug }}" method="POST">
-    @csrf
-    <label for="rating">Rate this meal:</label>
-    <select id="rating">
-        @for ($i = 1; $i <= 5; $i++)
-            <option value="{{ $i }}" {{ $i == $post->rating ? 'selected' : '' }}>{{ $i }}</option>
-        @endfor
-    </select>
-    <button type="submit">Submit Rating</button>
-</form>
+            @if (Auth::check())
+                <form action="/meal/{{ $post->slug }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+
+                    <label for="rating">Rate this meal:</label>
+                    <select id="rating" name="rating">
+                        @for ($i = 1; $i <= 5; $i++)
+                            <option value="{{ $i }}" >{{ $i }}</option>
+                        @endfor
+                    </select>
+
+                    <button type="submit" class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
+                        Submit Post
+                    </button>
+                </form>
             @endif
 
 

@@ -8,7 +8,7 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class MealsController extends Controller
 {
- 
+
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
@@ -98,34 +98,19 @@ class MealsController extends Controller
     public function update(Request $request, $slug)
     {
         $request->validate([
-            'title' => 'required',
-            'description' => 'required',
+            'rating' => 'required'
         ]);
-
+    
         Meal::where('slug', $slug)
             ->update([
-                'title' => $request->input('title'),
-                'description' => $request->input('description'),
-                'slug' => SlugService::createSlug(Meal::class, 'slug', $request->title),
+                'rating' => $request->input('rating'),
                 'user_id' => auth()->user()->id
             ]);
-
+    
         return redirect('/meal')
-            ->with('message', 'Your post has been updated!');
+            ->with('');
     }
 
-    public function rate(Request $request, $slug)
-{
-    $request->validate([
-        'rating' => 'required|integer|between:1,5',
-    ]);
-
-    $meal = Meal::where('slug', $slug)->first();
-    $meal->rating = $request->input('rating');
-    $meal->save();
-
-    return redirect()->back()->with('message', 'Rating updated successfully!');
-}
 
 
     /**
