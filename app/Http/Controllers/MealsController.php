@@ -60,7 +60,7 @@ class MealsController extends Controller
             'user_id' => auth()->user()->id
         ]);
 
-        return redirect('/meals')
+        return redirect('/meal')
             ->with('message', 'Your post has been added!');
     }
 
@@ -110,7 +110,7 @@ class MealsController extends Controller
                 'user_id' => auth()->user()->id
             ]);
 
-        return redirect('/meals')
+        return redirect('/meal')
             ->with('message', 'Your post has been updated!');
     }
 
@@ -125,7 +125,7 @@ class MealsController extends Controller
         $meals = Meal::where('slug', $slug);
         $meals->delete();
 
-        return redirect('/meals')
+        return redirect('/meal')
             ->with('message', 'Your post has been deleted!');
     }
 }
