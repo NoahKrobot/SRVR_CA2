@@ -60,7 +60,7 @@ class MealsController extends Controller
             'user_id' => auth()->user()->id
         ]);
 
-        return redirect('/meal')
+        return redirect('/meals')
             ->with('message', 'Your post has been added!');
     }
 
@@ -72,7 +72,7 @@ class MealsController extends Controller
      */
     public function show($slug)
     {
-        return view('meal.show')
+        return view('meals.show')
             ->with('meals', Meal::where('slug', $slug)->first());
     }
 
@@ -84,7 +84,7 @@ class MealsController extends Controller
      */
     public function edit($slug)
     {
-        return view('meal.edit')
+        return view('meals.edit')
             ->with('meals', Meal::where('slug', $slug)->first());
     }
 
@@ -110,7 +110,7 @@ class MealsController extends Controller
                 'user_id' => auth()->user()->id
             ]);
 
-        return redirect('/meal')
+        return redirect('/meals')
             ->with('message', 'Your post has been updated!');
     }
 
@@ -125,7 +125,7 @@ class MealsController extends Controller
         $meals = Meal::where('slug', $slug);
         $meals->delete();
 
-        return redirect('/meal')
+        return redirect('/meals')
             ->with('message', 'Your post has been deleted!');
     }
 }

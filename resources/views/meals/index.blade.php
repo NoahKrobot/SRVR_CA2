@@ -20,7 +20,7 @@
 @if (Auth::check())
     <div class="pt-15 w-4/5 m-auto">
         <a 
-            href="/meals/create"
+            href="/meal/create"
             class="bg-blue-500 uppercase bg-transparent text-gray-100 text-xs font-extrabold py-3 px-5 rounded-3xl">
             Create post
         </a>
@@ -45,7 +45,7 @@
                 {{ $post->description }}
             </p>
 
-            <a href="/meals/{{ $post->slug }}" class="uppercase bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
+            <a href="/meal/{{ $post->slug }}" class="uppercase bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
                 Keep Reading
             </a>
 
@@ -53,7 +53,7 @@
             @if (isset(Auth::user()->id) && Auth::user()->id == $post->user_id)
                 <span class="float-right">
                     <a 
-                        href="/meals/{{ $post->slug }}/edit"
+                        href="/meal/{{ $post->slug }}/edit"
                         class="text-gray-700 italic hover:text-gray-900 pb-1 border-b-2">
                         Edit
                     </a>
@@ -61,7 +61,7 @@
 
                 <span class="float-right">
                      <form 
-                        action="/meals/{{ $post->slug }}"
+                        action="/meal/{{ $post->slug }}"
                         method="POST">
                         @csrf
                         @method('delete')
@@ -71,7 +71,6 @@
                             type="submit">
                             Delete
                         </button>
-
                     </form>
                 </span>
             @endif
