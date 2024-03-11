@@ -4,7 +4,7 @@
 <div class="w-4/5 m-auto text-center">
     <div class="py-15 border-b border-gray-200">
         <h1 class="text-6xl">
-            Workout Plans
+            Meals
         </h1>
     </div>
 </div>
@@ -36,18 +36,57 @@
             <h2 class="text-gray-700 font-bold text-5xl pb-4">
                 {{ $post->title }}
             </h2>
+            
 
             <span class="text-gray-500">
                 By <span class="font-bold italic text-gray-800">{{ $post->user->name }}</span>, Created on {{ date('jS M Y', strtotime($post->updated_at)) }}
             </span>
+            
+            <a href="/meal/{{ $post->slug }}" class="uppercase bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
+                Keep Reading
+            </a>
+
 
             <p class="text-xl text-gray-700 pt-8 pb-10 leading-8 font-light">
                 {{ $post->description }}
             </p>
 
-            <a href="/meal/{{ $post->slug }}" class="uppercase bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
-                Keep Reading
-            </a>
+            <p class="text-xl text-gray-700 pt-8 pb-10 leading-8 font-light">
+    Current Rating: {{ $post->rating }}
+</p>
+
+@if (Auth::check())
+<form action="/meal/{{ $post->slug }}" method="POST">
+    @csrf
+    <label for="rating">Rate this meal:</label>
+    <select id="rating">
+        @for ($i = 1; $i <= 5; $i++)
+            <option value="{{ $i }}" {{ $i == $post->rating ? 'selected' : '' }}>{{ $i }}</option>
+        @endfor
+    </select>
+    <button type="submit">Submit Rating</button>
+</form>
+            @endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
             @if (isset(Auth::user()->id) && Auth::user()->id == $post->user_id)

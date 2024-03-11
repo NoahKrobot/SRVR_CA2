@@ -114,6 +114,20 @@ class MealsController extends Controller
             ->with('message', 'Your post has been updated!');
     }
 
+    public function rate(Request $request, $slug)
+{
+    $request->validate([
+        'rating' => 'required|integer|between:1,5',
+    ]);
+
+    $meal = Meal::where('slug', $slug)->first();
+    $meal->rating = $request->input('rating');
+    $meal->save();
+
+    return redirect()->back()->with('message', 'Rating updated successfully!');
+}
+
+
     /**
      * Remove the specified resource from storage.
      *
