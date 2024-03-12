@@ -57,29 +57,62 @@
             </p>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
             @if (Auth::check())
-            <form action="/meal/{{ $post->slug }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
+                @php
+                    //App\Models\Ratings because php[premium] tool requested so?
+                    $userRating = App\Models\Ratings::where('user_id', Auth::id())->where('meal_id', $post->id)->first();
+                @endphp
 
-                <label for="rating">Rate this meal:</label>
+                @if ($userRating)
+                    <p>Your rating: {{ $userRating->rating }}</p>
+                @else
+                    <p>You haven't rated this meal yet.</p>
+                @endif
 
-                <div class="rating">
+                <form action="/meal/{{ $post->slug }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+
+                    <label for="rating">Rate this meal:</label>
+
+                    <div class="rating">
                     @for ($i = 1; $i <= 5; $i++)
-                        <input type="radio" id="star" name="rating" value="{{ $i }}">
-                        <div>
-                        <label for="star" > <span> {{ $i }}</span>
-                        </div>
-                    </label>
-                        
-                    @endfor
-                </div>
+                         <input type="radio" id="star" name="rating" value="{{ $i }}" 
+                            @if($userRating->rating == $i)
+                                checked
+                            @endif
+                            >
+                        <label for="star"> <span>{{ $i }}</span></label>
+                     @endfor
+                    </div>
 
-                <button type="submit" class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
-                    Submit Post
-                </button>
-            </form>
+                    <button type="submit" class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
+                        Submit Post
+                    </button>
+                </form>
             @endif
+
+
+
+
+
+
+
+
+
 
             @if (isset(Auth::user()->id) && Auth::user()->id == $post->user_id)
             

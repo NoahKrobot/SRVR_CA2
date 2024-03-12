@@ -20,8 +20,6 @@ Route::get('/', [PagesController::class, 'index']);
 
 Route::resource('/blog', PostsController::class);
 Route::resource('/meal', MealsController::class);
-Route::post('/meal/{slug}/rate', [MealsController::class, 'rate'])->middleware('auth');
-
 
 Auth::routes();
 
