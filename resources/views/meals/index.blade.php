@@ -52,9 +52,6 @@
             </p>
 
 
-            <p class="text-xl text-gray-700 pt-8 pb-10 leading-8 font-light">
-                Current Rating: {{ $post->rating }}
-            </p>
             @if (Auth::check())
             <form action="/meal/{{ $post->slug }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -64,13 +61,9 @@
 
                 <div class="rating">
                     @for ($i = 1; $i <= 5; $i++)
-                        @php
-                            $ratingVariable = ($i == $post->rating) ? 'checked' : '';
-                        @endphp
                         <input type="radio" id="star" name="rating" value="{{ $i }}">
                         <div>
-                        <label for="star" >
-                        {{ $i }}
+                        <label for="star" > <span> {{ $i }}</span>
                         </div>
                     </label>
                         
@@ -82,26 +75,6 @@
                 </button>
             </form>
             @endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             @if (isset(Auth::user()->id) && Auth::user()->id == $post->user_id)
             
@@ -124,6 +97,9 @@
         </div>
     </div>    
 @endforeach
+
+
+
 
 @endsection
 

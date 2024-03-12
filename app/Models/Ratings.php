@@ -6,18 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-class Meal extends Model
+class Ratings extends Model
 {
     use HasFactory;
     use Sluggable;
 
-    protected $fillable = ['title', 'slug', 'description', 'image_path', 'user_id'];
+    protected $table = 'users_and_ratings';
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
- 
+    protected $fillable = [
+        'user_id', 'meal_id', 'rating',
+    ];
+   
 
     public function sluggable(): array
     {

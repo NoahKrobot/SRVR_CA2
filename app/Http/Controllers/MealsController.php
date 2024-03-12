@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Meal;
+use App\Models\Ratings;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class MealsController extends Controller
@@ -100,33 +101,17 @@ class MealsController extends Controller
         $request->validate([
             'rating' => 'required'
         ]);
-
-     
     
-        $ratingVariable = Meal::where('slug', $slug)->value('rating');
-        $userRating = $request->input('rating');
-
-        if($ratingVariable != 0){
-
-            $updatedRating = ($userRating + $ratingVariable) / 2;
-        }else{
-            $updatedRating = $userRating;
-        }
+        $user = auth()->user();
+        $meal = Meal::where('slug', $slug)->first();
     
-
-       
+        Ratings::updateOrCreate(
+            ['user_id' => $user->id, 'meal_id' => $meal->id],
+            ['rating' => $request->input('rating')]
+        );
     
-        Meal::where('slug', $slug)
-            ->update([
-                'rating' => $updatedRating,
-                'user_id' => auth()->user()->id
-            ]);
-    
-        return redirect('/meal')
-            ->with('');
+        return redirect('/meal')->with('success', 'Meal rating updated successfully');
     }
-
-
 
     /**
      * Remove the specified resource from storage.
