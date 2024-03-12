@@ -100,10 +100,25 @@ class MealsController extends Controller
         $request->validate([
             'rating' => 'required'
         ]);
+
+     
+    
+        $ratingVariable = Meal::where('slug', $slug)->value('rating');
+        $userRating = $request->input('rating');
+
+        if($ratingVariable != 0){
+
+            $updatedRating = ($userRating + $ratingVariable) / 2;
+        }else{
+            $updatedRating = $userRating;
+        }
+    
+
+       
     
         Meal::where('slug', $slug)
             ->update([
-                'rating' => $request->input('rating'),
+                'rating' => $updatedRating,
                 'user_id' => auth()->user()->id
             ]);
     
