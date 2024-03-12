@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
 @section('content')
 <div class="w-4/5 m-auto text-center">
@@ -52,11 +53,39 @@
             </p>
 
 
+
+
+
+
+
+
+
             <p class="text-xl text-gold-700 pt-8 pb-10 leading-8 font-light">
-            Current rating:{{ $post->rating }}
+            Meal's rating:
+                <span class="starsInIndexBladeWithIcons">
+                    @php
+                        $fStar = (int) $post->rating;
+                        $hStar = $post->rating - (int) $post->rating;
+                        $eStar = (int)5 - $fStar - $hStar;
+                    @endphp
+
+                    @for ($i = 0; $i < $fStar; $i++)
+                        <i class="fas fa-star"></i>
+                    @endfor
+
+                    @if ($hStar > 0)
+                        <i class="fas fa-star-half-alt"></i>
+                    @endif
+
+                    @for ($i = 0; $i < (int)$eStar; $i++)
+                        <i class="far fa-star"></i>
+                    @endfor
+<!-- 
+                    <p>f star is: {{$fStar}}</p>
+                    <p>h star is: {{$hStar}}</p>
+                    <p>e star is: {{$eStar}}</p> -->
+                </span>
             </p>
-
-
 
 
 
@@ -91,7 +120,7 @@
                     <div class="rating">
                     @for ($i = 1; $i <= 5; $i++)
                          <input type="radio" id="star" name="rating" value="{{ $i }}" 
-                            @if($userRating->rating == $i)
+                            @if($userRating && $userRating->rating == $i)
                                 checked
                             @endif
                             >
@@ -104,13 +133,6 @@
                     </button>
                 </form>
             @endif
-
-
-
-
-
-
-
 
 
 
