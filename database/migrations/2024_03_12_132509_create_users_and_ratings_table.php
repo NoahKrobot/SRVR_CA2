@@ -15,18 +15,16 @@ class CreateUsersAndRatingsTable extends Migration
     {
         Schema::create('users_and_ratings', function (Blueprint $table) {
             $table->id();
-
-            $table->integer('user_id');
-            $table->integer('meal_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('meal_id');
             $table->integer('rating');
             $table->timestamps();
 
             $table->unique(['user_id', 'meal_id']);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('meal_id')->references('id')->on('meals')->onDelete('cascade');
-
-            $table->timestamps();
         });
+
     }
 
     /**
