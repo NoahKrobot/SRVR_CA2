@@ -52,6 +52,11 @@
             </p>
 
 
+            <p class="text-xl text-gold-700 pt-8 pb-10 leading-8 font-light">
+            Current rating:{{ $post->rating }}
+            </p>
+
+
             @if (Auth::check())
             <form action="/meal/{{ $post->slug }}" method="POST" enctype="multipart/form-data">
                 @csrf

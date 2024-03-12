@@ -109,7 +109,17 @@ class MealsController extends Controller
             ['user_id' => $user->id, 'meal_id' => $meal->id],
             ['rating' => $request->input('rating')]
         );
-    
+
+        
+        $mealRatings = Ratings::where('meal_id', $meal->id)->get();
+
+        $averageRating = $mealRatings->avg('rating');
+
+        Meal:: where('id', $meal->id)
+            ->update(
+                ['rating' => $averageRating]
+            );
+     
         return redirect('/meal')->with('success', 'Meal rating updated successfully');
     }
 
@@ -123,7 +133,6 @@ class MealsController extends Controller
     {
         $meals = Meal::where('slug', $slug);
         $meals->delete();
-
         return redirect('/meal')
             ->with('message', 'Your post has been deleted!');
     }

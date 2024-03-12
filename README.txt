@@ -8,3 +8,6 @@ https://laravel.com/docs/4.2/schema\
 
 updateOrCreate in update MealsController:
 https://stackoverflow.com/questions/42695943/laravel-updateorcreate-method
+
+collumn avergae in MealsController:
+https://stackoverflow.com/questions/42529067/how-to-get-average-of-column-values-in-laravel
