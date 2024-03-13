@@ -4,7 +4,7 @@
 <div class="w-4/5 m-auto text-left">
     <div class="py-15">
         <h1 class="text-6xl">
-            Create Post
+            Create Meal
         </h1>
     </div>
 </div>
