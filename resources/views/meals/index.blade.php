@@ -124,7 +124,6 @@
                 function submitForm() {
                     document.getElementById("ratingForm").submit(); 
                 }
-                
              
                 document.querySelectorAll('.toggleButton').forEach(button => {
                 button.addEventListener('click', function() {
