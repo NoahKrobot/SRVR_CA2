@@ -130,7 +130,12 @@
                 button.addEventListener('click', function() {
                     const descriptionText = this.parentElement;
                     descriptionText.classList.toggle('showFullText');
-               
+                         
+                    if (descriptionText.classList.contains('showFullText')) {
+                        this.textContent = '▲';
+                    } else {
+                        this.textContent = '▼'; 
+                    }
                 })
             })
 
