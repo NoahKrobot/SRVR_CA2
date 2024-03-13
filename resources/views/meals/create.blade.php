@@ -36,7 +36,7 @@
 
         <textarea 
             name="description"
-            placeholder="Description..."
+            placeholder="Instructions..."
             class="py-20 bg-transparent block border-b-2 w-full h-60 text-xl outline-none"></textarea>
 
         <div class="bg-grey-lighter pt-15">

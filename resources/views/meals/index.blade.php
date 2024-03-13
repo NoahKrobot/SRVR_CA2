@@ -37,36 +37,15 @@
             <h2 class="text-gray-700 font-bold text-5xl pb-4">
                 {{ $post->title }}
             </h2>
+
             
-
-            <span class="text-gray-500">
-                By <span class="font-bold italic text-gray-800">{{ $post->user->name }}</span>, Created on {{ date('jS M Y', strtotime($post->updated_at)) }}
-            </span>
-            
-            <a href="/meal/{{ $post->slug }}" class="uppercase bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
-                Keep Reading
-            </a>
-
-
-            <p class="text-xl text-gray-700 pt-8 pb-10 leading-8 font-light">
-                {{ $post->description }}
-            </p>
-
-
-
-
-
-
-
-
-
             <p class="text-xl text-gold-700 pt-8 pb-10 leading-8 font-light">
             Meal's rating:
                 <span class="starsInIndexBladeWithIcons">
                     @php
-                        $fStar = (int) $post->rating;
-                        $hStar = $post->rating - (int) $post->rating;
-                        $eStar = (int)5 - $fStar - $hStar;
+    $fStar = (int) $post->rating;
+    $hStar = $post->rating - (int) $post->rating;
+    $eStar = (int) 5 - $fStar - $hStar;
                     @endphp
 
                     @for ($i = 0; $i < $fStar; $i++)
@@ -77,53 +56,53 @@
                         <i class="fas fa-star-half-alt"></i>
                     @endif
 
-                    @for ($i = 0; $i < (int)$eStar; $i++)
+                    @for ($i = 0; $i < (int) $eStar; $i++)
                         <i class="far fa-star"></i>
                     @endfor
-<!-- 
+                    <!-- 
                     <p>f star is: {{$fStar}}</p>
                     <p>h star is: {{$hStar}}</p>
                     <p>e star is: {{$eStar}}</p> -->
                 </span>
             </p>
+            
 
-
-
-
-
-
-
-
-
-
-
+            <span class="text-gray-500">
+                By <span class="font-bold italic text-gray-800">{{ $post->user->name }}</span>, Created on {{ date('jS M Y', strtotime($post->updated_at)) }}
+            </span>
+            
+            <!-- <a href="/meal/{{ $post->slug }}" class="uppercase bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
+                Keep Reading
+            </a> -->
 
 
             @if (Auth::check())
             @php
-                //App\Models\Ratings because php[premium] tool requested so?
-                $userRating = App\Models\Ratings::where('user_id', Auth::id())->where('meal_id', $post->id)->first();
-            @endphp
+        //App\Models\Ratings because php[premium] tool requested so?
+        $userRating = App\Models\Ratings::where('user_id', Auth::id())->where('meal_id', $post->id)->first();
+                @endphp
 
-            @if ($userRating)
-                <p>Your rating: {{ $userRating->rating }}</p>
-            @else
-                <p>You haven't rated this meal yet.</p>
-            @endif
+                @if ($userRating)
+                    <p>Change your rating:</p>
+                @else
+                    <p>You haven't rated this meal yet.</p>
+                @endif
 
-            <form action="/meal/{{ $post->slug }}" method="POST" enctype="multipart/form-data">
+            <form id="ratingForm" action="/meal/{{ $post->slug }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
-                <label for="rating">Rate this meal:</label>
+                <!-- <label for="rating">Rate this meal:</label> -->
 
                 <div class="rating">
                     @for ($i = 1; $i <= 5; $i++)
-                        <input type="radio" id="star{{ $i }}" name="rating" value="{{ $i }}" 
+                        <input type="radio" id="star{{ $i }}" name="rating" value="{{ $i }}"  style="display: none;"
+                        onchange="submitForm()" 
+                        
                             @if($userRating && $userRating->rating == $i)
                                 checked
                             @endif
-                            style="display: none;">
+                            >
                         <label for="star{{ $i }}" class="star-icon" title="{{ $i }}">
                             @if($userRating && $userRating->rating >= $i)
                                 <i class="fas fa-star"></i> 
@@ -133,20 +112,22 @@
                         </label>
                     @endfor
                 </div>
-
-                <button type="submit" class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
-                    Submit Post
-                </button>
             </form>
-        @endif
-
-
-
-
-
-            @if (isset(Auth::user()->id) && Auth::user()->id == $post->user_id)
             
+            <p class="descriptionText" >
+                {{ $post->description }}
+                <span class="toggleButton">▼</span>
+            </p>
 
+
+            <script>
+                function submitForm() {
+                    document.getElementById("ratingForm").submit(); 
+                }
+            </script>
+
+        @endif
+            @if (isset(Auth::user()->id) && Auth::user()->id == $post->user_id)
                 <span class="float-right">
                      <form 
                         action="/meal/{{ $post->slug }}"
@@ -165,9 +146,6 @@
         </div>
     </div>    
 @endforeach
-
-
-
 
 @endsection
 
