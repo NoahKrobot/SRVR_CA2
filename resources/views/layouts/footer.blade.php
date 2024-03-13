@@ -7,13 +7,28 @@
 
             <ul class="py-4 sm:text-s pt-4 text-gray-400">
                 <li class="pb-1">
-                    <a href="/">
+                    <a href="/" class="linkInFooter">
                         Home
                     </a>
                 </li>
                 <li class="pb-1">
                     <a href="/blog">
-                        Blog
+                        Workouts
+                    </a>
+                </li>
+                <li class="pb-1">
+                    <a href="/blog/create">
+                    Create a Workout
+                    </a>
+                </li>
+                <li class="pb-1">
+                    <a href="/meal">
+                        Meals
+                    </a>
+                </li>
+                <li class="pb-1">
+                    <a href="/meal/create">
+                        Create a Meal
                     </a>
                 </li>
                 <li class="pb-1">
@@ -29,42 +44,26 @@
             </ul>
         </div>
 
-        <div>
-            <h3 class="text-l sm:font-bold text-gray-100">
-                Find Us
-            </h3>
-
-            <ul class="py-4 sm:text-s pt-4 text-gray-400">
-                <li class="pb-1">
-                    <a href="/">
-                        What we do
-                    </a>
-                </li>
-                <li class="pb-1">
-                    <a href="/">
-                        Address
-                    </a>
-                </li>
-                <li class="pb-1">
-                    <a href="/">
-                        Phone
-                    </a>
-                </li>
-                <li class="pb-1">
-                    <a href="/">
-                        Contact
-                    </a>
-                </li>
-            </ul>
-        </div>
+       
 
         <div>
             <h3 class="text-l sm:font-bold text-gray-100">
-            <p>testqfsg</p>
+            <p>Hyperlinks</p>
             </h3>
 
             <div class="py-4 sm:text-s pt-4 text-gray-400">
-              <button class="gitButton" >OPEN ON GITHUB</button>
+
+              <a href="https://github.com/NoahKrobot/SRVR_CA2" target="_blank" class="githubButton">
+                    <i class="fab fa-github"></i> Open on GitHub
+              </a>
+              <br/>
+              <br/>
+
+              <a href="https://github.com/NoahKrobot/SRVR_CA2" target="_blank" class="githubButton">
+                    <i class="fab fa-youtube"></i> Open on YouTube
+              </a>
+
+
             </div>
         </div>
     </div>
