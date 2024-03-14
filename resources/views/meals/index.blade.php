@@ -120,9 +120,9 @@
 
             <script>
              
-            function submitForm(form) {
-                form.submit();
-            }
+             function submitForm() {
+                    document.getElementById("ratingForm").submit(); 
+                }
                         
                 function toggleDescription(button) {
              const descriptionText = button.parentElement;
