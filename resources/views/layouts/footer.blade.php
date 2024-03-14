@@ -7,13 +7,28 @@
 
             <ul class="py-4 sm:text-s pt-4 text-gray-400">
                 <li class="pb-1">
-                    <a href="/">
+                    <a href="/" class="linkInFooter">
                         Home
                     </a>
                 </li>
                 <li class="pb-1">
                     <a href="/blog">
-                        Blog
+                        Workouts
+                    </a>
+                </li>
+                <li class="pb-1">
+                    <a href="/blog/create">
+                    Create a Workout
+                    </a>
+                </li>
+                <li class="pb-1">
+                    <a href="/meal">
+                        Meals
+                    </a>
+                </li>
+                <li class="pb-1">
+                    <a href="/meal/create">
+                        Create a Meal
                     </a>
                 </li>
                 <li class="pb-1">
@@ -29,62 +44,27 @@
             </ul>
         </div>
 
-        <div>
-            <h3 class="text-l sm:font-bold text-gray-100">
-                Find Us
-            </h3>
-
-            <ul class="py-4 sm:text-s pt-4 text-gray-400">
-                <li class="pb-1">
-                    <a href="/">
-                        What we do
-                    </a>
-                </li>
-                <li class="pb-1">
-                    <a href="/">
-                        Address
-                    </a>
-                </li>
-                <li class="pb-1">
-                    <a href="/">
-                        Phone
-                    </a>
-                </li>
-                <li class="pb-1">
-                    <a href="/">
-                        Contact
-                    </a>
-                </li>
-            </ul>
-        </div>
+       
 
         <div>
             <h3 class="text-l sm:font-bold text-gray-100">
-                Latest posts
+            <p>Hyperlinks</p>
             </h3>
 
-            <ul class="py-4 sm:text-s pt-4 text-gray-400">
-                <li class="pb-1">
-                    <a href="/">
-                        Why we love tech
-                    </a>
-                </li>
-                <li class="pb-1">
-                    <a href="/">
-                        Why we love design
-                    </a>
-                </li>
-                <li class="pb-1">
-                    <a href="/">
-                        Why to use Laravel
-                    </a>
-                </li>
-                <li class="pb-1">
-                    <a href="/">
-                        Why PHP is the best
-                    </a>
-                </li>
-            </ul>
+            <div class="py-4 sm:text-s pt-4 text-gray-400">
+
+              <a href="https://github.com/NoahKrobot/SRVR_CA2" target="_blank" class="githubButton">
+                    <i class="fab fa-github"></i> Open on GitHub
+              </a>
+              <br/>
+              <br/>
+
+              <a href="https://github.com/NoahKrobot/SRVR_CA2" target="_blank" class="githubButton">
+                    <i class="fab fa-youtube"></i> Open on YouTube
+              </a>
+
+
+            </div>
         </div>
     </div>
     <p class="w-25 w-4/5 pb-3 m-auto text-xs text-gray-100 pt-6">

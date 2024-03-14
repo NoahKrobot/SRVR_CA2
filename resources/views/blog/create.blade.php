@@ -4,7 +4,7 @@
 <div class="w-4/5 m-auto text-left">
     <div class="py-15">
         <h1 class="text-6xl">
-            Create Post
+            Create a Workout
         </h1>
     </div>
 </div>
@@ -50,7 +50,7 @@
                     class="hidden">
             </label>
         </div>
-
+        
         <button    
             type="submit"
             class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
