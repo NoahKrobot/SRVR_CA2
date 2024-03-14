@@ -114,11 +114,11 @@
                     @endfor
                 </div>
             </form>
-        @endif
+        
 
             <p class="descriptionText" >
                 {{ $post->description }}
-                <span class="toggleButton">▼</span>
+                <span class="toggleButton" onclick="toggleDescription(this)">▼</span>
             </p>
 
             <script>
@@ -126,21 +126,19 @@
                     document.getElementById("ratingForm").submit(); 
                 }
              
-                document.querySelectorAll('.toggleButton').forEach(button => {
-                button.addEventListener('click', function() {
-                    const descriptionText = this.parentElement;
-                    descriptionText.classList.toggle('showFullText');
-                         
-                    if (descriptionText.classList.contains('showFullText')) {
-                        this.textContent = '▲';
-                    } else {
-                        this.textContent = '▼'; 
-                    }
-                })
-            })
+                function toggleDescription(button) {
+        const descriptionText = button.parentElement;
+        descriptionText.classList.toggle('showFullText');
+
+        if (descriptionText.classList.contains('showFullText')) {
+            button.textContent = '▲';
+        } else {
+            button.textContent = '▼';
+        }
+    }
 
             </script>
-
+@endif
          
 
             @if (isset(Auth::user()->id) && Auth::user()->id == $post->user_id)
