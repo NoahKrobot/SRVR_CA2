@@ -83,7 +83,7 @@
         
 
         <h2 class="text-4xl font-bold py-10">
-            Become a creator
+            BECOME A CREATOR
         </h2>
 
         <div id="creatorsOption">
@@ -93,7 +93,7 @@
             <a 
                 href="/blog/create"
                 class="uppercase bg-blue-500 text-gray-100 text-s font-extrabold py-3 px-8 rounded-3xl">
-                Create a post
+                Create a workout
             </a>
 
 

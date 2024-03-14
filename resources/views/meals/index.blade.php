@@ -83,9 +83,10 @@
                 @endphp
 
                 @if ($userRating)
-                    <p>Change your rating:</p>
+                <br/>
+                    <p class="ratingText" >Change your rating:</p>
                 @else
-                    <p>You haven't rated this meal yet.</p>
+                    <p class="ratingText" >You haven't rated this meal yet.</p>
                 @endif
 
             <form id="ratingForm" action="/meal/{{ $post->slug }}" method="POST" enctype="multipart/form-data">
