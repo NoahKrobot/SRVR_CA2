@@ -123,6 +123,10 @@ class MealsController extends Controller
         return redirect('/meal')->with('success', 'Meal rating updated successfully');
     }
 
+    
+    
+    
+
     /**
      * Remove the specified resource from storage.
      *

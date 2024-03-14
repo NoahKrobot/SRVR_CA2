@@ -77,43 +77,40 @@
 
 
             @if (Auth::check())
-            @php
-        //App\Models\Ratings because php[premium] tool requested so?
-        $userRating = App\Models\Ratings::where('user_id', Auth::id())->where('meal_id', $post->id)->first();
+                @php
+                    //App\Models\Ratings because php[premium] tool requested so?
+                    $userRating = App\Models\Ratings::where('user_id', Auth::id())->where('meal_id', $post->id)->first();
                 @endphp
 
                 @if ($userRating)
-                <br/>
-                    <p class="ratingText" >Change your rating:</p>
+                    <p>Your rating: {{ $userRating->rating }}</p>
                 @else
-                    <p class="ratingText" >You haven't rated this meal yet.</p>
+                    <p>You haven't rated this meal yet.</p>
                 @endif
 
-            <form id="ratingForm" action="/meal/{{ $post->slug }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
+                <form action="/meal/{{ $post->slug }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
 
-                <!-- <label for="rating">Rate this meal:</label> -->
+               
+                    <label for="rating">Rate this meal:</label>
 
-                <div class="rating">
+                    <div class="rating">
                     @for ($i = 1; $i <= 5; $i++)
-                        <input type="radio" id="star{{ $i }}" name="rating" value="{{ $i }}"  style="display: none;"
-                        onchange="submitForm()" 
-                        
+                         <input type="radio" id="star" name="rating" value="{{ $i }}" 
                             @if($userRating && $userRating->rating == $i)
                                 checked
+                               
                             @endif
                             >
-                        <label for="star{{ $i }}" class="star-icon" title="{{ $i }}">
-                            @if($userRating && $userRating->rating >= $i)
-                                <i class="fas fa-star"></i> 
-                            @else
-                                <i class="far fa-star"></i> 
-                            @endif
-                        </label>
-                    @endfor
-                </div>
-            </form>
+                        <label for="star"> <span>{{ $i }}</span></label>
+                     @endfor
+                    </div>
+
+                    <button type="submit" class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
+                        Submit your rating
+                    </button>
+                </form>
         
 
             <p class="descriptionText" >
@@ -122,20 +119,21 @@
             </p>
 
             <script>
-                function submitForm() {
-                    document.getElementById("ratingForm").submit(); 
-                }
              
+            function submitForm(form) {
+                form.submit();
+            }
+                        
                 function toggleDescription(button) {
-        const descriptionText = button.parentElement;
-        descriptionText.classList.toggle('showFullText');
+             const descriptionText = button.parentElement;
+                    descriptionText.classList.toggle('showFullText');
 
-        if (descriptionText.classList.contains('showFullText')) {
-            button.textContent = '▲';
-        } else {
-            button.textContent = '▼';
-        }
-    }
+                if (descriptionText.classList.contains('showFullText')) {
+                button.textContent = '▲';
+                } else {
+                    button.textContent = '▼';
+                }
+            }
 
             </script>
 @endif
