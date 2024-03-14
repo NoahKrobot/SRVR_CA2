@@ -100,7 +100,6 @@
                          <input type="radio" id="star" name="rating" value="{{ $i }}" 
                             @if($userRating && $userRating->rating == $i)
                                 checked
-                               
                             @endif
                             >
                         <label for="star"> <span>{{ $i }}</span></label>
