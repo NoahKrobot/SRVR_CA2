@@ -113,12 +113,12 @@
                     @endfor
                 </div>
             </form>
-            
+        @endif
+
             <p class="descriptionText" >
                 {{ $post->description }}
                 <span class="toggleButton">▼</span>
             </p>
-
 
             <script>
                 function submitForm() {
@@ -140,7 +140,8 @@
 
             </script>
 
-        @endif
+         
+
             @if (isset(Auth::user()->id) && Auth::user()->id == $post->user_id)
                 <span class="float-right">
                      <form 
