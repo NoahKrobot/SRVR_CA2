@@ -1,26 +1,12 @@
-## Laravel 8 Complete Blog
+## Laravel application 
 
-This repository is linked to [this youtube video](https://www.youtube.com/watch?v=HKJDLXsTr8A&t=4710s) where I show you how to create a complete blog in Laravel 8 using best practices.
+This repository is linked to [this youtube video](https://www.youtube.com/watch?v=nELUXAQZoyY) where I am demonstrating how my application works, and proving that it is functional.
 
-•	Author: Code With Dary <br>
-•	Twitter: [@codewithdary](https://twitter.com/codewithdary) <br>
-•	Instagram: [@codewithdary](https://www.instagram.com/codewithdary/) <br>
+•	Author: Noah Krobot <br>
 
 ## Requirements
 •	PHP 7.3 or higher <br>
 •	Node 12.13.0 or higher <br>
-
-## Usage <br>
-Setting up your development environment on your local machine: <br>
-```
-git clone git@github.com:codewithdary/laravel-8-complete-blog.git
-cd laravel-8-complete-blog
-cp .env.example .env
-composer install
-php artisan key:generate
-php artisan cache:clear && php artisan config:clear
-php artisan serve
-```
 
 ## Before starting <br>
 Create a database <br>
@@ -30,20 +16,33 @@ create database laravelblog;
 exit;
 ```
 
-Setup your database credentials in the .env file <br>
-```
+## My .env file: <br>
+
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=laravelblog
-DB_USERNAME={USERNAME}
-DB_PASSWORD={PASSWORD}
-```
+DB_DATABASE=blogca
+DB_USERNAME=root
+DB_PASSWORD=
 
-Migrate the tables
-```
-php artisan migrate
-```
 
-## Contributing
-Do not hesitate to contribute to the project by adapting or adding features ! Bug reports or pull requests are welcome.
+
+## References: <br>
+
+use of foreign keys in create_users_and_ratings_table: <br>
+https://laravel.com/docs/4.2/schema\ <br>
+
+adding an unique element in in create_users_and_ratings_table: <br>
+https://laravel.com/docs/4.2/schema\ <br>
+
+updateOrCreate in update MealsController: <br>
+https://stackoverflow.com/questions/42695943/laravel-updateorcreate-method <br>
+
+collumn avergae in MealsController: <br>
+https://stackoverflow.com/questions/42529067/how-to-get-average-of-column-values-in-laravel <br>
+
+number_format in index.blade.php for Meal: <br>
+https://www.w3schools.com/php/func_string_number_format.asp <br>
+
+get radio button automatically checked (index.blade.php for Meal): <br>
+https://www.phptutorial.net/php-tutorial/php-radio-button/ <br>

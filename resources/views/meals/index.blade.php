@@ -83,9 +83,9 @@
                 @endphp
 
                 @if ($userRating)
-                    <p>Your rating: {{ $userRating->rating }}</p>
+                    <p class="ratingTxt">Your rating: {{ $userRating->rating }}</p>
                 @else
-                    <p>You haven't rated this meal yet.</p>
+                    <p class="ratingTxt">You haven't rated this meal yet.</p>
                 @endif
 
                 <form action="/meal/{{ $post->slug }}" method="POST" enctype="multipart/form-data">
@@ -136,7 +136,7 @@
 
             </script>
 @endif
-         
+
 
             @if (isset(Auth::user()->id) && Auth::user()->id == $post->user_id)
                 <span class="float-right">
